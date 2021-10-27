@@ -1,0 +1,19 @@
+.form-style{
+    background-color: #ccc;
+    box-sizing: border-box;
+    margin: auto;
+    padding: 20px;
+    border-radius: 4px;
+
+}
+
+.container-btn-bottom-right {
+    position: relative;
+}
+
+.btn-bottom-right {
+    position: absolute;
+    right:    0;
+    bottom:   0;
+  }
+  

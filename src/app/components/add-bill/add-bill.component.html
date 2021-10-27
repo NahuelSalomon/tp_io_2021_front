@@ -1,0 +1,81 @@
+<main>
+    <div class="form-style">
+    <div class="display-5">Record sales</div>
+    <br>
+    <div class="display-6">Bill nro 1 - Date: 2020-12-20</div>
+    <form class="row g-3">
+        <div class="col-md-6">
+            <label for="supplier" class="form-label">Product</label>
+            <select class="form-select" id="supplier" name="supplier" aria-label="Default select example">
+                <option selected>Select product</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <label for="name" class="form-label">Quantity</label>
+            <input type="number" class="form-control" id="quantity" name="quantity">
+        </div>
+        <div class="col-md-2">
+            <label for="name" class="form-label">Amount</label>
+            <input type="number" class="form-control" id="amount" name="amount">
+        </div>
+        <div class="col-md-2 container-btn-bottom-right">
+          <button type="button" class="btn btn-success btn-bottom-right">Add</button>
+        </div>
+      </form>
+      <br>
+      <br>
+      <table class="table table-dark table-striped text-center">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Product</th>
+                <th scope="col">Cost unit</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><button class="btn btn-danger"><i class="fas fa-times"></i></button></td>
+              <th>...</th>
+              <td>...</td>
+              <td>...</td>
+              <td>...</td>
+            </tr>
+            <tr>
+                <td><button class="btn btn-danger"><i class="fas fa-times"></i></button></td>
+                <th>...</th>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+
+            </tr>
+            <tr>
+                <td><button class="btn btn-danger"><i class="fas fa-times"></i></button></td>
+                <th>...</th>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+
+              </tr>
+          </tbody>
+          <tfoot>
+              <tr>
+                <td colspan="4">Total</td>
+                <td>2000</td>
+                
+            </tr>
+              
+
+          </tfoot>
+    </table>
+    <br>
+    <br>
+    <div class="text-center"><button class="btn btn-lg btn-primary">Finish bill</button></div>
+    </div>
+</main>
+
+

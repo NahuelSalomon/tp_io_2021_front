@@ -1,1 +1,45 @@
-<p>product-add works!</p>
+<main>
+    <div class="form-style">
+    <div class="display-5">Add product</div>
+    <br>
+    <form class="row g-3">
+        <div class="col-md-6">
+            <label for="supplier" class="form-label">Supplier</label>
+            <select class="form-select" id="supplier" name="supplier" aria-label="Default select example">
+                <option selected>Select supplier</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+          <label for="model" class="form-label">Model</label>
+          <input type="model" class="form-control" id="model" name="model" placeholder="Type de model">
+        </div>
+        <div class="col-12">
+          <label for="scanNumber" class="form-label">Scan number</label>
+          <input type="text" class="form-control" id="scanNumber" name="scanNumber" placeholder="Type the scan number">
+        </div>
+        <div class="col-md-6">
+          <label for="inputCity" class="form-label">Stock</label>
+          <input type="number" class="form-control" id="stock" name="stock" placeholder="Type the stock">
+        </div>
+        <div class="col-md-6">
+            <label for="inputCity" class="form-label">Cost unit</label>
+            <input type="number" class="form-control" id="costUnit" name="costUnit" placeholder="Type the cost unit" >
+        </div>
+        <div class="col-md-12">
+            <label for="supplier" class="form-label">Level service</label>
+            <select class="form-select" id="supplier" name="supplier" aria-label="Default select example">
+                <option selected>Select level service</option>
+                <option value="1">0.95</option>
+                <option value="2">0.80</option>
+                <option value="3">0.75</option>
+            </select>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-success">Add</button>
+          </div>
+      </form>
+    </div>
+</main>
