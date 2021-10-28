@@ -1,7 +1,7 @@
 <main>
-    <table class="table table-secondary table-striped text-center">
+    <table class="table table-dark table-striped">
         <thead>
-            <tr>
+            <tr class="text-center">
                 <th colspan="6" class="display-4">Supplier list</th>
             </tr>
             <tr>
@@ -14,30 +14,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">...</th>
-              <td>...</td>
-              <td>...</td>
-              <td>...</td>
-              <td>...</td>
-              <td>...</td>
+            <tr *ngFor="let supplier of supplierList">
+              <th scope="row">{{ supplier.id }}</th>
+              <td> {{ supplier.name }} </td>
+              <td> {{ supplier.phoneNumber }} </td>
+              <td> {{ supplier.leadTime }} </td>
+              <td> {{ supplier.reviewPeriod }} </td>
+              <td> {{ supplier.lastReview }} </td>
             </tr>
-            <tr>
-                <th scope="row">...</th>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-            </tr>
-            <tr>
-                <th scope="row">...</th>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-              </tr>
           </tbody>
     </table>
 </main>

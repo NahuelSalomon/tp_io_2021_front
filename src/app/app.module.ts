@@ -10,6 +10,8 @@ import { SupplierAddComponent } from './components/supplier/supplier-add/supplie
 import { SalesRecordComponent } from './components/sales-record/sales-record.component';
 import { AddBillComponent } from './components/add-bill/add-bill.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { NotificationsComponent } from './components/notifications/notifications
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

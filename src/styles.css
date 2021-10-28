@@ -1,9 +1,9 @@
 body{
-    background-image: url("/img/kittens-printer-much.jpg");
+    background-image: url("./app/img/31314.jpg");
 }
 
 main{
-    width: 70%;
+    width: 80%;
     margin: auto;
     margin-top: 100px;
 }
