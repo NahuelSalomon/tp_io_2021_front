@@ -14,4 +14,9 @@ export class ProductService {
   getAll() : Promise<any> {
     return this.http.get("/api/product/").toPromise();
   }
+
+  getByScan(scan: string) : Promise<any> {
+    return this.http.get("/api/product/scan/"+scan).toPromise();
+  }
+
 }
