@@ -24,19 +24,48 @@ export class CustomValidator {
 
     }
 
+    static positiveNumbersOnly(): ValidatorFn {
+        let regExp: RegExp = /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)(?:[eE][+-]?[0-9]+)?$/;
+
+        return(control: AbstractControl): {[key:string]: any} | null => {
+            const postitiveNumbers = regExp.test(control.value);
+
+            return !postitiveNumbers ? { 'Only positive numbers': {value: control.value}} : null;
+        };
+
+    }
+
     static scanNumberExists(productService: ProductService) : AsyncValidatorFn {
-        return (control : AbstractControl) : Promise<{[key:string]: any} | null> => {
+        console.log("log 1");
+        
+        return (control : AbstractControl) : Promise<{ [key: string]: any } | null> => {
             if(control.value == '') {
                 return null!;
             } else {
                 return productService.getByScan(control.value)
                     .then(response => {
+                        console.log("log 2");
                         return response ? { 'ScanNumberExists': { value: control.value}} : null;
                     })
             }
 
-        }
+        };
     }
+    /*
+        static emailExists(studentService: StudentAsyncService): AsyncValidatorFn {       
+        return (control: AbstractControl): Promise<{ [key: string]: any } | null> => {
+          if (control.value == '') {
+            return null;
+          }
+          else {
+            return studentService.getByEmail(control.value)
+                .then(response => {
+                    return response ? { 'emailExists': { value: control.value } } : null;
+                })
+          }                  
+        };
+      }
+    */
 
 }
 

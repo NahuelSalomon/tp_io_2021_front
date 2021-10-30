@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CustomValidator } from 'src/app/common/custom-validator';
+import { Product } from 'src/app/models/product';
 import { Supplier } from 'src/app/models/supplier';
 import { ProductService } from 'src/app/services/product.service';
 import { SupplierService } from 'src/app/services/supplier.service';
@@ -16,11 +17,14 @@ export class ProductAddComponent implements OnInit {
 
   productForm = new FormGroup({
     supplier: new FormControl('', [ Validators.required]),
-    model: new FormControl('', [ Validators.required, CustomValidator.lettersOnly()]),
-    scanNumber: new FormControl('', [ Validators.required ]),
-    stock: new FormControl('', [ Validators.required]),
-    costUnit: new FormControl('', [ Validators.required]),
-    levelService: new FormControl('', [ Validators.required])
+    model: new FormControl('', [ Validators.required]),
+    scanNumber: new FormControl('', [Validators.required], [CustomValidator.scanNumberExists(this.productService)] ),
+    stock: new FormControl('', [ Validators.required, CustomValidator.positiveNumbersOnly()]),
+    costUnit: new FormControl('', [ Validators.required, CustomValidator.positiveNumbersOnly()]),
+    levelService: new FormControl('', [ Validators.required]),
+    costOfPreparing : new FormControl('', [ Validators.required, CustomValidator.positiveNumbersOnly()]),
+    storageCost : new FormControl('', [ Validators.required, CustomValidator.positiveNumbersOnly()]),
+    description : new FormControl('', [ Validators.required])
   });
 
   get supplier() { return this.productForm.get('supplier'); }
@@ -29,6 +33,12 @@ export class ProductAddComponent implements OnInit {
   get stock() { return this.productForm.get('stock'); }
   get costUnit() { return this.productForm.get('costUnit'); }
   get levelService() { return this.productForm.get('levelService'); }
+  get costOfPreparing() { return this.productForm.get('costOfPreparing'); }
+  get storageCost() { return this.productForm.get('storageCost'); }
+  get description() { return this.productForm.get('description'); }
+
+
+
 
 
   supplierList : Array<Supplier>;
@@ -42,8 +52,22 @@ export class ProductAddComponent implements OnInit {
   }
 
   onSubmit() {
-    
 
+
+    let scan: string = this.scanNumber.value;
+    let model: string = this.model.value;
+    let description: string = this.description.value;
+    let costUnit: number = this.costUnit.value;
+    let costOfPreparing: number = this.costOfPreparing.value;
+    let storageCost: number = this.storageCost.value;
+    let stock: number = this.storageCost.value;
+    let serviceLevel: number = this.levelService.value;
+    let supplier: Supplier = new Supplier();
+
+    let product = new Product(null, scan, model, description, supplier, costUnit, costOfPreparing, storageCost, stock, null, serviceLevel, 0, 0, 0);
+
+    
+        
   }
 
 }

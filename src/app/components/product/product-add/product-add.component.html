@@ -3,40 +3,59 @@
     <div class="display-5">Add product</div>
     <br>
     <form class="row g-3" [formGroup]="productForm" (ngSubmit)="onSubmit()">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <label for="supplier" class="form-label">Supplier</label>
-            <select class="form-select" id="supplier" name="supplier" formControlName="supplier" aria-label="Default select example">
-                <option *ngFor="let supplier of supplierList" value="supplier.name">{{ supplier.name }}</option>
+            <select class="form-select border2px" id="supplier" name="supplier" formControlName="supplier" aria-label="Default select example">
+              <option value="" selected disabled hidden>Select the supplier</option>  
+              <option *ngFor="let supplier of supplierList" value="supplier.name">{{ supplier.name }}</option>
             </select>
         </div>
-        <div class="col-md-6">
+      
+        <div class="col-md-4">
           <label for="model" class="form-label">Model</label>
-          <input type="model" class="form-control border2px" *ngIf="!(!model.valid && (model.dirty || model.touched))" id="model" name="model" formControlName="model" placeholder="Type de model">
-          <input type="text" class="form-control border2pxIncorrect" *ngIf="(!model.valid && (model.dirty || model.touched))" id="model" name="model" formControlName="model" placeholder="Type your first name">
+          <input type="model" class="form-control border2px" id="model" name="model" formControlName="model" placeholder="Type de model">
         </div>
-        <div class="col-12">
+      
+        <div class="col-md-4">
           <label for="scanNumber" class="form-label">Scan number</label>
-          <input type="text" class="form-control border2px" *ngIf="!(!scanNumber.valid && (scanNumber.dirty || scanNumber.touched))" id="scanNumber" name="scanNumber" formControlName="scanNumber" placeholder="Type the scan number">
-          <input type="text" class="form-control border2pxIncorrect" *ngIf="(!scanNumber.valid && (scanNumber.dirty || scanNumber.touched))" id="scanNumber" name="scanNumber" formControlName="scanNumber" placeholder="Type your scan number">
+          <input type="text" class="form-control" id="scanNumber" name="scanNumber" formControlName="scanNumber" placeholder="Type the scan number">
         </div>
-        <div class="col-md-6">
+        
+        <div class="col-md-4">
+          <label for="levelService" class="form-label">Level service</label>
+          <select class="form-select" id="levelService" name="levelService" formControlName="levelService" aria-label="Default select example">
+              <option value="" selected disabled hidden>Select the level service</option>  
+              <option value="0.95">0.95</option>
+              <option value="0.80">0.80</option>
+              <option value="0.75">0.75</option>
+          </select>
+        </div>
+      
+        <div class="col-md-4">
           <label for="stock" class="form-label">Stock</label>
-          <input type="number" class="form-control border2px" *ngIf="!(!stock.valid && (stock.dirty || stock.touched))" id="stock" name="stock" formControlName="stock" placeholder="Type the stock">
-          <input type="number" class="form-control border2pxIncorrect" *ngIf="(!stock.valid && (stock.dirty || stock.touched))" id="stock" name="stock" formControlName="stock" placeholder="Type the stock">
+          <input type="number" class="form-control border2px" id="stock" name="stock" formControlName="stock" placeholder="Type the stock">
         </div>
-        <div class="col-md-6">
+        
+        <div class="col-md-4">
             <label for="costUnit" class="form-label">Cost unit</label>
-            <input type="number" class="form-control border2px" *ngIf="!(!costUnit.valid && (costUnit.dirty || costUnit.touched))" id="costUnit" name="costUnit" formControlName="costUnit" placeholder="Type the cost unit" >
-            <input type="number" class="form-control border2pxIncorrect" *ngIf="(!costUnit.valid && (costUnit.dirty || costUnit.touched))" id="costUnit" name="costUnit" formControlName="costUnit" placeholder="Type the cost unit" >
-          </div>
-        <div class="col-md-12">
-            <label for="levelService" class="form-label">Level service</label>
-            <select class="form-select" id="levelService" name="levelService" formControlName="levelService" aria-label="Default select example">
-                <option value selected="0.95">0.95</option>
-                <option value="0.80">0.80</option>
-                <option value="0.75">0.75</option>
-            </select>
+            <input type="number" class="form-control" id="costUnit" name="costUnit" formControlName="costUnit" placeholder="Type the cost unit" >
         </div>
+
+        <div class="col-md-6">
+          <label for="costOfPreparing" class="form-label">Cost of preparing</label>
+          <input type="number" class="form-control border2px" id="costOfPreparing" name="costOfPreparing" formControlName="costOfPreparing" placeholder="Type cost of preparing">
+        </div>
+        
+        <div class="col-md-6">
+            <label for="storageCost" class="form-label">Storage cost</label>
+            <input type="number" class="form-control" id="storageCost" name="storageCost" formControlName="storageCost" placeholder="Type the storage cost" >
+        </div>
+
+        <div class="col-md-12">
+          <label for="description" class="form-label">Description</label>
+          <textarea class="form-control" id="description" name="description" formControlName="description" rows="2"></textarea>
+        </div>
+
         <hr>
         <div class="col-12">
             <button type="submit" class="btn btn-success" [disabled]="!productForm.valid">Add</button>
@@ -44,27 +63,75 @@
       </form>
     </div>
     <br>
+
+    <div class="row g-3" *ngIf="(!supplier.valid && (supplier.dirty || supplier.touched))">
+      <div class="alert alert-danger sm" role="alert" *ngIf="supplier.errors.required"  >
+        Supplier is required
+      </div>
+    </div>
+
     <div class="row g-3" *ngIf="(!model.valid && (model.dirty || model.touched))">
       <div class="alert alert-danger sm" role="alert" *ngIf="model.errors.required"  >
         Model is required
       </div>
-      <div class="alert alert-danger" role="alert" *ngIf="model.errors.lettersOnly">
-        Model must contain letters only
-      </div>
     </div>
+
     <div class="row g-3" *ngIf="(!scanNumber.valid && (scanNumber.dirty || scanNumber.touched))">
-      <div class="alert alert-danger sm" role="alert" *ngIf="scanNumber.errors.required"  >
+      
+      <div class="alert alert-danger sm" role="alert" *ngIf="scanNumber.errors?.required">
         Scan number is required
       </div>
-    </div>
-    <div class="row g-3" *ngIf="(!stock.valid && (stock.dirty || stock.touched))">
-      <div class="alert alert-danger sm" role="alert" *ngIf="stock.errors.required"  >
-        Stock is required
+      
+      <div class="alert alert-danger" role="alert" *ngIf="scanNumber.errors?.scanNumberExists">
+        Scan number already exists
       </div>
     </div>
+
+    <div class="row g-3" *ngIf="(!stock.valid && (stock.dirty || stock.touched))">
+      <div class="alert alert-danger" role="alert" *ngIf="stock.errors.required">
+        Stock is required
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="stock.errors.positiveNumbersOnly">
+        Stock unit must be positive
+      </div>
+    </div>
+    
     <div class="row g-3" *ngIf="(!costUnit.valid && (costUnit.dirty || costUnit.touched))">
-      <div class="alert alert-danger sm" role="alert" *ngIf="costUnit.errors.required"  >
+      <div class="alert alert-danger" role="alert" *ngIf="costUnit.errors.required">
         Cost unit is required
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="costUnit.errors.positiveNumbersOnly">
+        Cost unit must be positive
+      </div>
+    </div>
+    
+    <div class="row g-3" *ngIf="(!levelService.valid && (levelService.dirty || levelService.touched))">
+      <div class="alert alert-danger" role="alert" *ngIf="levelService.errors.required">
+        Level service is required
+      </div>
+    </div>
+
+    <div class="row g-3" *ngIf="(!costOfPreparing.valid && (costOfPreparing.dirty || costOfPreparing.touched))">
+      <div class="alert alert-danger" role="alert" *ngIf="costOfPreparing.errors.positiveNumbersOnly">
+        Cost of preparing must be positive
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="costOfPreparing.errors.required">
+        Cost of preparing is required
+      </div>
+    </div>
+
+    <div class="row g-3" *ngIf="(!storageCost.valid && (storageCost.dirty || storageCost.touched))">
+      <div class="alert alert-danger" role="alert" *ngIf="storageCost.errors.required">
+        Storage cost is required
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="storageCost.errors.positiveNumbersOnly">
+        Storage cost must be positive
+      </div>
+    </div>
+
+    <div class="row g-3" *ngIf="(!description.valid && (description.dirty || description.touched))">
+      <div class="alert alert-danger" role="alert" *ngIf="description.errors.required">
+        Description is required
       </div>
     </div>
 </main>
