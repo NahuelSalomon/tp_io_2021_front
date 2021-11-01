@@ -13,6 +13,7 @@ import { SupplierAddComponent } from './components/supplier/supplier-add/supplie
 import { SalesRecordComponent } from './components/sales-record/sales-record.component';
 import { AddBillComponent } from './components/add-bill/add-bill.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
+import { ProductAddStockComponent } from './components/product/product-add-stock/product-add-stock.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { NotificationsComponent } from './components/notifications/notifications
     SupplierAddComponent,
     SalesRecordComponent,
     AddBillComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    ProductAddStockComponent
   ],
   imports: [
     FormsModule,

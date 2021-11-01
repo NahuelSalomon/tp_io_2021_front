@@ -15,8 +15,9 @@ export class Product {
     avgDemand: number;
     disDemand: number;
     reorderPoint:number;
+    zone: number;
     
-    constructor(id?: number, scan?: string, model?: string, description?: string, supplier?: Supplier, costUnit?: number, costOfPreparing?: number, storageCost?: number, stock?: number, modelType?: number, serviceLevel?: number, avgDemand?: number, disDemand?: number, reorderPoint?:number) {
+    constructor(id?: number, scan?: string, model?: string, description?: string, supplier?: Supplier, costUnit?: number, costOfPreparing?: number, storageCost?: number, stock?: number, modelType?: number, serviceLevel?: number, avgDemand?: number, disDemand?: number, reorderPoint?:number, zone?: number) {
         this.id = id!;
         this.scan = scan!;
         this.model = model!;
@@ -31,6 +32,7 @@ export class Product {
         this.avgDemand = avgDemand!;
         this.disDemand = disDemand!;
         this.reorderPoint = reorderPoint!;
+        this.zone = zone!;
     }
 
 }

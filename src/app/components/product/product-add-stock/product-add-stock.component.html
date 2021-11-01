@@ -1,0 +1,37 @@
+<main>
+    <div class="form-style">
+        <div class="display-5">Add Stock</div>
+        <br>
+        <form class="row g-3" [formGroup]="productForm">
+
+
+            <div class="col-md-6">
+                <label for="product" class="form-label">Product</label>
+                <select class="form-select" id="product" name="product" formControlName="product"
+                    aria-label="Default select example">
+                    <option value="" selected disabled hidden>Select the product</option>
+                    <option *ngFor="let product of productList" [ngValue]="product">{{ product.supplier.name }} {{
+                        product.model }}</option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <label for="product" class="form-label">Currently stock</label>
+                 <label class="form-label">Currently stock</label>
+                <div class="alert alert-primary" role="alert">
+                    Quantity of units: {{ product.value.stock }}
+                </div> 
+            </div>
+
+            <div class="col-md-3">
+                <label for="stock" class="form-label">Stock to add</label>
+                <input type="number" class="form-control" id="stock" name="stock" placeholder="Type the stock"
+                    formControlName="stock">
+            </div>
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-success">Add</button>
+            </div>
+        </form>
+    </div>
+</main>

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddBillComponent } from './components/add-bill/add-bill.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
+import { ProductAddStockComponent } from './components/product/product-add-stock/product-add-stock.component';
 import { ProductAddComponent } from './components/product/product-add/product-add.component';
 import { ProductListComponent } from './components/product/product-list/product-list.component';
 import { SalesRecordComponent } from './components/sales-record/sales-record.component';
@@ -11,6 +12,7 @@ import { SupplierListComponent } from './components/supplier/supplier-list/suppl
 const routes: Routes = [
   {path: "product/list", component: ProductListComponent},
   {path: "product/add", component: ProductAddComponent},
+  {path: "product/add/stock", component: ProductAddStockComponent},
   {path: "supplier/list", component: SupplierListComponent},
   {path: "supplier/add", component: SupplierAddComponent},
   {path: "salesRecord", component: SalesRecordComponent},

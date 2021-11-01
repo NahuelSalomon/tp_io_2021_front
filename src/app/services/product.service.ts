@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +19,16 @@ export class ProductService {
   getByScan(scan: string) : Promise<any> {
     return this.http.get("/api/product/scan/"+scan).toPromise();
   }
+
+  add(product : Product) : Promise<any> {
+
+    const httpOptions = {
+     headers : new HttpHeaders({
+       'Content-Type' : 'application/json'
+     })
+   };
+
+   return this.http.post("/api/product/", product, httpOptions).toPromise(); 
+ }
 
 }

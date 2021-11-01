@@ -2,7 +2,8 @@
     <table class="table table-dark table-striped">
         <thead>
             <tr class="text-center">
-                <th colspan="11" class="display-4">Product list</th>
+                <th colspan="8" class="display-4">Product list</th>
+                <th colspan="4" class="display-4"><button class="btn btn-primary">Recalculation of parameters</button></th>
             </tr>
             <tr>
               <th scope="col">#</th>
@@ -16,6 +17,7 @@
               <th scope="col">Avg. demand</th>
               <th scope="col">Disp. demand</th>
               <th scope="col">Reorder point</th>
+              <th scope="col">CAV</th>
             </tr>
           </thead>
           <tbody>
@@ -30,7 +32,9 @@
               <td>{{ product.serviceLevel }}</td>
               <td>{{ product.avgDemand }}</td>
               <td>{{ product.disDemand }}</td>
-              <td>{{ product.reorderPoint }}</td>
+              <td *ngIf="product.reorderPoint != null">{{ product.reorderPoint }}</td>
+              <td *ngIf="product.reorderPoint == null">N/A</td>
+              <td>{{ product.avgDemand * 365 * product.stock}}</td>
             </tr>
            <!--  <tr>
                 <th scope="row">...</th>

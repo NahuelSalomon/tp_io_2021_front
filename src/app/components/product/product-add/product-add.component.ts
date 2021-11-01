@@ -53,7 +53,6 @@ export class ProductAddComponent implements OnInit {
 
   onSubmit() {
 
-
     let scan: string = this.scanNumber.value;
     let model: string = this.model.value;
     let description: string = this.description.value;
@@ -62,12 +61,17 @@ export class ProductAddComponent implements OnInit {
     let storageCost: number = this.storageCost.value;
     let stock: number = this.storageCost.value;
     let serviceLevel: number = this.levelService.value;
+    let supplierId: number = this.supplier.value;
     let supplier: Supplier = new Supplier();
-
-    let product = new Product(null, scan, model, description, supplier, costUnit, costOfPreparing, storageCost, stock, null, serviceLevel, 0, 0, 0);
-
-    
-        
+    this.supplierService.getById(supplierId)
+      .then(response=>{
+        supplier = response;
+        let product = new Product(null, scan, model, description, supplier, costUnit, costOfPreparing, storageCost, stock, 0, serviceLevel, 0, 0, 0, 0);
+        this.productService.add(product)
+          .then(response=>console.log(response))
+          .catch(error=>console.log(error))
+      })
+      .catch(error=>console.error(error));        
   }
 
 }

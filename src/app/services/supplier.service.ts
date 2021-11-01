@@ -13,4 +13,9 @@ export class SupplierService {
   getAll() : Promise<any> {
     return this.http.get("/api/supplier/").toPromise();
   }
+
+  getById(id: number) : Promise<any> {
+    return this.http.get("/api/supplier/"+id).toPromise();
+  }
+  
 }
