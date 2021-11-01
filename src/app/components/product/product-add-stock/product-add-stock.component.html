@@ -2,7 +2,7 @@
     <div class="form-style">
         <div class="display-5">Add Stock</div>
         <br>
-        <form class="row g-3" [formGroup]="productForm">
+        <form class="row g-3" [formGroup]="productForm" (ngSubmit)="onSubmit()">
 
 
             <div class="col-md-6">
@@ -16,22 +16,41 @@
             </div>
 
             <div class="col-md-3">
-                <label for="product" class="form-label">Currently stock</label>
-                 <label class="form-label">Currently stock</label>
-                <div class="alert alert-primary" role="alert">
-                    Quantity of units: {{ product.value.stock }}
-                </div> 
+                <label class="form-label">Currently stock</label>
+                <div *ngIf="product.value" class="form-control" role="alert">
+                    Quantity of units: <b>{{ product.value.stock }}</b>
+                </div>
+                <div *ngIf="!product.value" class="form-control" role="alert">
+                    You've not selected any product
+                </div>
             </div>
 
             <div class="col-md-3">
                 <label for="stock" class="form-label">Stock to add</label>
-                <input type="number" class="form-control" id="stock" name="stock" placeholder="Type the stock"
-                    formControlName="stock">
+                <input type="number" class="form-control" name="stock" placeholder="Type the stock" formControlName="stock" value="">
             </div>
-
+            <hr>
             <div class="col-12">
-                <button type="submit" class="btn btn-success">Add</button>
+                <button type="submit" class="btn btn-success" [disabled]="!productForm.valid">Add</button>
             </div>
         </form>
+    </div>
+    <br>
+    <div class="row" *ngIf="!product.valid && (product.dirty || product.touched)">
+        <div class="col-lg-12">
+            <div class="alert alert-danger" role="alert" *ngIf="product.errors.required">
+                Product is required
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="!stock.valid && (stock.dirty || stock.touched)">
+        <div class="col-lg-12">
+            <div class="alert alert-danger" role="alert" *ngIf="stock.errors.required">
+                Stock is required
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="stock.errors.positiveNumbersOnly && !stock.errors.required">
+                Stock must contain positive numbers only
+            </div> 
+        </div>
     </div>
 </main>

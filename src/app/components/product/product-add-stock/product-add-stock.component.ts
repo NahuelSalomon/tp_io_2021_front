@@ -25,12 +25,15 @@ export class ProductAddStockComponent implements OnInit {
 
   productForm = new FormGroup({
     product: new FormControl('', [ Validators.required]),
-    stock: new FormControl('', [ Validators.required, CustomValidator.positiveNumbersOnly]),
-    scanNumber: new FormControl('', [Validators.required])
+    stock: new FormControl('', [ Validators.required, CustomValidator.positiveNumbersOnly()])
   });
 
   get product() { return this.productForm.get('product'); }
   get stock() { return this.productForm.get('stock'); }
-  get scanNumber() { return this.productForm.get('scanNumber'); }
+
+  onSubmit() { 
+    this.productService.updateStock(this.product.value.scan,this.stock.value);
+    
+  }
 
 }

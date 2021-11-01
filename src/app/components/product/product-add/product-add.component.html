@@ -102,7 +102,7 @@
     <div class="alert alert-danger" role="alert" *ngIf="stock.errors.required">
       Stock is required
     </div>
-    <div class="alert alert-danger" role="alert" *ngIf="stock.errors.positiveNumbersOnly">
+    <div class="alert alert-danger" role="alert" *ngIf="stock.errors.positiveNumbersOnly && !stock.errors.required">
       Stock unit must be positive
     </div>
   </div>
@@ -111,7 +111,7 @@
     <div class="alert alert-danger" role="alert" *ngIf="costUnit.errors.required">
       Cost unit is required
     </div>
-    <div class="alert alert-danger" role="alert" *ngIf="costUnit.errors.positiveNumbersOnly">
+    <div class="alert alert-danger" role="alert" *ngIf="costUnit.errors.positiveNumbersOnly && !costUnit.errors.required">
       Cost unit must be positive
     </div>
   </div>
@@ -123,11 +123,11 @@
   </div>
 
   <div class="row g-3" *ngIf="(!costOfPreparing.valid && (costOfPreparing.dirty || costOfPreparing.touched))">
-    <div class="alert alert-danger" role="alert" *ngIf="costOfPreparing.errors.positiveNumbersOnly">
-      Cost of preparing must be positive
-    </div>
     <div class="alert alert-danger" role="alert" *ngIf="costOfPreparing.errors.required">
       Cost of preparing is required
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="costOfPreparing.errors.positiveNumbersOnly && !costOfPreparing.errors.required">
+      Cost of preparing must be positive
     </div>
   </div>
 
@@ -135,7 +135,7 @@
     <div class="alert alert-danger" role="alert" *ngIf="storageCost.errors.required">
       Storage cost is required
     </div>
-    <div class="alert alert-danger" role="alert" *ngIf="storageCost.errors.positiveNumbersOnly">
+    <div class="alert alert-danger" role="alert" *ngIf="storageCost.errors.positiveNumbersOnly && !storageCost.errors.required">
       Storage cost must be positive
     </div>
   </div>

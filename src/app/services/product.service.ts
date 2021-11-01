@@ -31,4 +31,14 @@ export class ProductService {
    return this.http.post("/api/product/", product, httpOptions).toPromise(); 
  }
 
+ updateStock(scan: string, movement: number) : Promise<any>  {
+  const httpOptions = {
+    headers : new HttpHeaders({
+      'Content-Type' : 'application/json'
+    })
+  };
+
+  return this.http.put(`/api/product/scan/${scan}/stock/${movement}`, httpOptions).toPromise(); 
+ }
+
 }

@@ -8,7 +8,7 @@ export class CustomValidator {
         return(control: AbstractControl): {[key:string]: any} | null => {
             const forbidden = regExp.test(control.value);
 
-            return forbidden ? { 'lettersOnly': {value: control.value}} : null;
+            return forbidden ? { 'forbidden': {value: control.value}} : null;
         };
 
     }
@@ -25,18 +25,23 @@ export class CustomValidator {
     }
 
     static positiveNumbersOnly(): ValidatorFn {
-        let regExp: RegExp = /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)(?:[eE][+-]?[0-9]+)?$/;
+        let regExp: RegExp = /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)(?:[eE][+-]?[0-9]+)*$/;
 
         return(control: AbstractControl): {[key:string]: any} | null => {
-            const postitiveNumbers = regExp.test(control.value);
+            const positiveNumbersOnly = regExp.test(control.value);
+            /* let positiveNumbersOnly = false;
+            if(Number.isInteger(control.value)) {
+                if(control.value > 0) {
+                    positiveNumbersOnly = true;
+                }
+            } */
 
-            return !postitiveNumbers ? { 'Only positive numbers': {value: control.value}} : null;
+            return !positiveNumbersOnly ? { 'positiveNumbersOnly': {value: control.value}} : null;
         };
 
     }
 
     static scanNumberExists(productService: ProductService) : AsyncValidatorFn {
-        console.log("log 1");
         
         return (control : AbstractControl) : Promise<{ [key: string]: any } | null> => {
             if(control.value == '') {
@@ -44,8 +49,7 @@ export class CustomValidator {
             } else {
                 return productService.getByScan(control.value)
                     .then(response => {
-                        console.log("log 2");
-                        return response ? { 'ScanNumberExists': { value: control.value}} : null;
+                        return response ? { 'scanNumberExists': { value: control.value}} : null;
                     })
             }
 
