@@ -1,0 +1,145 @@
+<main>
+    <div class="form-style">
+      <div class="display-5">Edit product</div>
+      <br>
+      <form class="row g-3" [formGroup]="productEditForm" (ngSubmit)="onSubmit()">
+         <div class="col-md-4">
+          <label for="supplier" class="form-label">Supplier</label>
+          <select class="form-select border2px" id="supplier" name="supplier" aria-label="Default select example" disabled>
+           <option>{{ product.supplier.name }}</option>
+          </select>
+        </div>
+  
+        <div class="col-md-4">
+          <label for="model" class="form-label">Model</label>
+          <input type="model" class="form-control border2px" id="model" name="model" formControlName="model">
+        </div>
+  
+        <div class="col-md-4">
+          <label for="scanNumber" class="form-label">Scan number</label>
+          <input type="text" class="form-control" id="scanNumber" name="scanNumber" formControlName="scanNumber">
+        </div>
+  
+        <div class="col-md-4">
+          <label for="levelService" class="form-label">Level service</label>
+          <select class="form-select" id="levelService" name="levelService" formControlName="levelService" aria-label="Default select example">
+            <option value="0.98">0.98</option>
+            <option value="0.95">0.95</option>
+            <option value="0.9">0.90</option>
+            <option value="0.85">0.85</option>
+          </select>
+        </div>
+  
+        <div class="col-md-4">
+          <label for="stock" class="form-label">Stock</label>
+          <input type="number" class="form-control border2px" id="stock" name="stock" formControlName="stock">
+        </div>
+  
+        <div class="col-md-4">
+          <label for="costUnit" class="form-label">Cost unit</label>
+          <input type="number" class="form-control" id="costUnit" name="costUnit" formControlName="costUnit">
+        </div>
+  
+       <div class="col-md-6">
+          <label for="costOfPreparing" class="form-label">Cost of preparing</label>
+          <input type="number" class="form-control border2px" id="costOfPreparing" name="costOfPreparing"
+            formControlName="costOfPreparing">
+        </div>
+  
+        <div class="col-md-6">
+          <label for="storageCost" class="form-label">Storage cost</label>
+          <input type="number" class="form-control" id="storageCost" name="storageCost" formControlName="storageCost">
+        </div>
+  
+        <div class="col-md-12">
+          <label for="description" class="form-label">Description</label>
+          <textarea class="form-control" id="description" name="description" formControlName="description"
+          rows="2"></textarea>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="modelType" id="modelType1" value="Q_MODEL" formControlName="modelType">
+            <label class="form-check-label" for="modelType1">
+              Q Model
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="modelType" id="modelType2" value="P_MODEL" formControlName="modelType">
+            <label class="form-check-label" for="modelType2">
+              P Model
+            </label>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="alert alert-warning" role="alert">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightbulb" viewBox="0 0 16 16">
+              <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"/>
+            </svg>
+            The suggested model is <strong>{{suggestedModel}}</strong>, since this product is classified under {{product.zone}}.
+          </div>
+        </div>
+
+        <hr>
+        <div class="col-12">
+          <button type="submit" class="btn btn-success">Edit</button>
+        </div>
+      </form>
+    </div>
+    <br>
+
+  <div class="row g-3" *ngIf="(!model.valid && (model.dirty || model.touched))">
+    <div class="alert alert-danger sm" role="alert" *ngIf="model.errors.required">
+      Model is required
+    </div>
+  </div>
+
+  <div class="row g-3" *ngIf="(!stock.valid && (stock.dirty || stock.touched))">
+    <div class="alert alert-danger" role="alert" *ngIf="stock.errors.required">
+      Stock is required
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="stock.errors.positiveNumbersOnly && !stock.errors.required">
+      Stock unit must be positive
+    </div>
+  </div>
+
+  <div class="row g-3" *ngIf="(!costUnit.valid && (costUnit.dirty || costUnit.touched))">
+    <div class="alert alert-danger" role="alert" *ngIf="costUnit.errors.required">
+      Cost unit is required
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="costUnit.errors.positiveNumbersOnly && !costUnit.errors.required">
+      Cost unit must be positive
+    </div>
+  </div>
+
+  <div class="row g-3" *ngIf="(!levelService.valid && (levelService.dirty || levelService.touched))">
+    <div class="alert alert-danger" role="alert" *ngIf="levelService.errors.required">
+      Level service is required
+    </div>
+  </div>
+
+  <div class="row g-3" *ngIf="(!costOfPreparing.valid && (costOfPreparing.dirty || costOfPreparing.touched))">
+    <div class="alert alert-danger" role="alert" *ngIf="costOfPreparing.errors.required">
+      Cost of preparing is required
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="costOfPreparing.errors.positiveNumbersOnly && !costOfPreparing.errors.required">
+      Cost of preparing must be positive
+    </div>
+  </div>
+
+  <div class="row g-3" *ngIf="(!storageCost.valid && (storageCost.dirty || storageCost.touched))">
+    <div class="alert alert-danger" role="alert" *ngIf="storageCost.errors.required">
+      Storage cost is required
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="storageCost.errors.positiveNumbersOnly && !storageCost.errors.required">
+      Storage cost must be positive
+    </div>
+  </div>
+
+  <div class="row g-3" *ngIf="(!description.valid && (description.dirty || description.touched))">
+    <div class="alert alert-danger" role="alert" *ngIf="description.errors.required">
+      Description is required
+    </div>
+  </div>
+</main>

@@ -22,7 +22,14 @@ export class ProductListComponent implements OnInit {
       
     })
     .catch(error=>console.log(error));
-  
+  }
+
+   differentSuggestedModel(product : Product) : boolean {
+    if ((product.zone.toString() == "ZONE_A" || product.zone.toString() =="ZONE_B") && product.modelType.toString() == "Q_MODEL")
+      return false;
+    else if (product.zone.toString() == "ZONE_C" && product.modelType.toString() == "P_MODEL")
+      return false;
+    return true;
   }
 
 

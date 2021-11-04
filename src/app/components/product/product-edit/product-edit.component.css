@@ -1,0 +1,16 @@
+.form-style{
+    background-color: #ccc;
+    padding: 20px;
+    border-radius: 4px;
+    margin: auto;
+}
+
+.border2px{
+    border: 0.5px solid white;
+}
+
+.border2pxIncorrect{
+    border: 0.5px solid #D83800;
+}
+
+

@@ -14,6 +14,7 @@ import { SalesRecordComponent } from './components/sales-record/sales-record.com
 import { AddBillComponent } from './components/add-bill/add-bill.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { ProductAddStockComponent } from './components/product/product-add-stock/product-add-stock.component';
+import { ProductEditComponent } from './components/product/product-edit/product-edit.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ProductAddStockComponent } from './components/product/product-add-stock
     SalesRecordComponent,
     AddBillComponent,
     NotificationsComponent,
-    ProductAddStockComponent
+    ProductAddStockComponent,
+    ProductEditComponent
   ],
   imports: [
     FormsModule,

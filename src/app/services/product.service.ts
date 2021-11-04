@@ -20,6 +20,14 @@ export class ProductService {
     return this.http.get("/api/product/scan/"+scan).toPromise();
   }
 
+  getById(id: number) : Promise<any> {
+    return this.http.get("/api/product/id/"+id).toPromise();
+  }
+
+  getSuggestedModel(id: number) : Promise<any> {
+    return this.http.get("/api/product/suggestModel/"+id).toPromise();
+  }
+
   add(product : Product) : Promise<any> {
 
     const httpOptions = {
@@ -39,6 +47,16 @@ export class ProductService {
   };
 
   return this.http.put(`/api/product/scan/${scan}/stock/${movement}`, httpOptions).toPromise(); 
+ }
+
+ updateProduct(id : number, product : Product) : Promise<any>  {
+  const httpOptions = {
+    headers : new HttpHeaders({
+      'Content-Type' : 'application/json'
+    })
+  };
+
+  return this.http.put("/api/product/"+id, product, httpOptions).toPromise(); 
  }
 
 }

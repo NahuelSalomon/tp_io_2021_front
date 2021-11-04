@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CustomValidator } from 'src/app/common/custom-validator';
 import { Product } from 'src/app/models/product';
 import { Supplier } from 'src/app/models/supplier';
@@ -71,7 +72,8 @@ export class ProductAddComponent implements OnInit {
           .then(response=>console.log(response))
           .catch(error=>console.log(error))
       })
-      .catch(error=>console.error(error));        
+      .catch(error=>console.error(error));
+    
   }
 
 }

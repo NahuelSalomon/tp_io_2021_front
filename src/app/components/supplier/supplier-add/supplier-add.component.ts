@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CustomValidator } from 'src/app/common/custom-validator';
 import { Supplier } from 'src/app/models/supplier';
 import { SupplierService } from 'src/app/services/supplier.service';
@@ -19,7 +20,7 @@ export class SupplierAddComponent {
     phoneNumber: new FormControl('', [ Validators.required]),
     leadTime: new FormControl('', [ Validators.required, CustomValidator.positiveNumbersOnly()]),
     reviewPeriod: new FormControl('', [ Validators.required, CustomValidator.positiveNumbersOnly()]),
-    isPresale: new FormControl('')
+    isPresale: new FormControl('true')
   });
 
   get name(){ return this.supplierForm.get('name'); }
@@ -35,7 +36,6 @@ export class SupplierAddComponent {
     let phoneNumber :number = this.phoneNumber.value;
     let leadTime :number = this.leadTime.value;
     let reviewPeriod :number = this.reviewPeriod.value;
-    console.log(this.isPresale.value);
     let isPresale :boolean = this.isPresale.value;
 
     let supplier = new Supplier(null, name, phoneNumber, isPresale, leadTime, reviewPeriod, new Date());
