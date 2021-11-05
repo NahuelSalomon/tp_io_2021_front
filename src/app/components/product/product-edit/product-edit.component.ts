@@ -96,11 +96,15 @@ export class ProductEditComponent implements OnInit {
     this.product.serviceLevel = serviceLevel;
     this.product.modelType = modelType;
     
-    this.productService.updateProduct(this.product.id, this.product)
-      .then(response=>console.log(response))
-      .catch(error=>console.log(error));
+    console.log(this.product);
+    
 
-    this.router.navigate(['product/list']);
+    this.productService.updateProduct(this.product.id, this.product)
+      .then(response=>{ 
+        console.log(response)   
+        this.router.navigate(['product/list']);
+      })
+      .catch(error=>console.log(error));
   }
 
 }

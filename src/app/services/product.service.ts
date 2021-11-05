@@ -50,6 +50,10 @@ export class ProductService {
  }
 
  updateProduct(id : number, product : Product) : Promise<any>  {
+  console.log("metodo update");
+  
+  console.log(product);
+  
   const httpOptions = {
     headers : new HttpHeaders({
       'Content-Type' : 'application/json'

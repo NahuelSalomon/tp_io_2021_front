@@ -2,8 +2,8 @@
     <table class="table table-dark table-striped">
         <thead>
             <tr class="text-center">
-                <th colspan="8" class="display-4">Product list</th>
-                <th colspan="4" class="display-4"><button class="btn btn-primary">Recalculation of parameters</button></th>
+                <th colspan="10" class="display-4">Product list</th>
+                <th colspan="5" class="display-4"><button class="btn btn-primary">Recalculation of parameters</button></th>
             </tr>
             <tr>
               <th scope="col">#</th>
@@ -12,6 +12,8 @@
               <th scope="col">Description</th>
               <th scope="col">Supplier</th>
               <th scope="col">costUnit</th>
+              <th scope="col">Storage cost</th>
+              <th scope="col">Cost preparing</th>
               <th scope="col">Stock</th>
               <th scope="col">Service level</th>
               <th scope="col">Avg. demand</th>
@@ -29,6 +31,8 @@
               <td>{{ product.description }}</td>
               <td>{{ product.supplier.name }}</td>
               <td>{{ product.costUnit }}</td>
+              <td>{{ product.storageCost }}</td>
+              <td>{{ product.costOfPreparing }}</td>
               <td>{{ product.stock }}</td>
               <td>{{ product.serviceLevel }}</td>
               <td>{{ product.avgDemand }}</td>
@@ -41,35 +45,11 @@
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                     <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
                   </svg>
-                  <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle" *ngIf ="differentSuggestedModel(product)"></span>
+                  <!-- <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle" *ngIf ="differentSuggestedModel(product)"></span> -->
                 </button>
               </td>
               
             </tr>
-           <!--  <tr>
-                <th scope="row">...</th>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-            </tr>
-            <tr>
-                <th scope="row">...</th>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-            </tr> -->
           </tbody>
     </table>
 </main>
