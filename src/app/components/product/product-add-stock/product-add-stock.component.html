@@ -29,6 +29,18 @@
                 <label for="stock" class="form-label">Stock to add</label>
                 <input type="number" class="form-control" name="stock" placeholder="Type the stock" formControlName="stock" value="">
             </div>
+
+            <div class="col-12">
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#scanModal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upc" viewBox="0 0 16 16">
+                        <path d="M3 4.5a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-7zm3 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7z"/>
+                      </svg>
+                    Scan
+                </button>
+
+                <app-product-scan (reading)="showScanned($event)"></app-product-scan>
+            </div>
+
             <hr>
             <div class="col-12">
                 <button type="submit" class="btn btn-success" [disabled]="!productForm.valid">Add</button>
@@ -53,4 +65,5 @@
             </div> 
         </div>
     </div>
+
 </main>

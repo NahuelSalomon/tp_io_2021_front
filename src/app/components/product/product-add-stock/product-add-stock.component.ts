@@ -20,7 +20,7 @@ export class ProductAddStockComponent implements OnInit {
       .then(response => {
         this.productList = response;
       })
-      .catch(error => console.log(error))
+      .catch(error => console.log(error));
   }
 
   productForm = new FormGroup({
@@ -34,6 +34,11 @@ export class ProductAddStockComponent implements OnInit {
   onSubmit() { 
     this.productService.updateStock(this.product.value.scan,this.stock.value);
     
+  }
+
+  showScanned(reading : Product){
+    
+    this.productForm.controls['product'].setValue(reading);
   }
 
 }

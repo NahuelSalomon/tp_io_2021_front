@@ -15,7 +15,8 @@ import { AddBillComponent } from './components/add-bill/add-bill.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { ProductAddStockComponent } from './components/product/product-add-stock/product-add-stock.component';
 import { ProductEditComponent } from './components/product/product-edit/product-edit.component';
-
+import { ProductScanComponent } from './components/product/product-scan/product-scan.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -28,14 +29,16 @@ import { ProductEditComponent } from './components/product/product-edit/product-
     AddBillComponent,
     NotificationsComponent,
     ProductAddStockComponent,
-    ProductEditComponent
+    ProductEditComponent,
+    ProductScanComponent
   ],
   imports: [
     FormsModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
