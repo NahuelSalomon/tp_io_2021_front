@@ -68,8 +68,22 @@
       </div>
 
       <hr>
+      <div class="col-md-4">
+        <input type="password" class="form-control" id="auth" name="auth" formControlName="auth" placeholder="Type authorization code">
+      </div>
+
+      <div class="col-md-4" *ngIf="authorization">
+        <div class="form-control"><i>Authorization: </i><i class="fas fa-check-circle status-ok"></i></div>
+      </div>
+      <div class="col-md-4" *ngIf="!authorization">
+        <div class="form-control"><i>Authorization: </i><i class="fas fa-times-circle status-no-ok"></i></div>
+      </div>
+      <div class="col-md-4">
+        <button type="button" class="btn btn-primary w-100" [disabled]="!productForm.valid" (click)="verifyCode()">Verify code</button>
+      </div>
+
       <div class="col-12">
-        <button type="submit" class="btn btn-success" [disabled]="!productForm.valid">Add</button>
+        <button type="submit" class="btn btn-success" [disabled]="!authorization">Add</button>
       </div>
     </form>
   </div>
@@ -111,7 +125,8 @@
     <div class="alert alert-danger" role="alert" *ngIf="costUnit.errors.required">
       Cost unit is required
     </div>
-    <div class="alert alert-danger" role="alert" *ngIf="costUnit.errors.positiveNumbersOnly && !costUnit.errors.required">
+    <div class="alert alert-danger" role="alert"
+      *ngIf="costUnit.errors.positiveNumbersOnly && !costUnit.errors.required">
       Cost unit must be positive
     </div>
   </div>
@@ -126,7 +141,8 @@
     <div class="alert alert-danger" role="alert" *ngIf="costOfPreparing.errors.required">
       Cost of preparing is required
     </div>
-    <div class="alert alert-danger" role="alert" *ngIf="costOfPreparing.errors.positiveNumbersOnly && !costOfPreparing.errors.required">
+    <div class="alert alert-danger" role="alert"
+      *ngIf="costOfPreparing.errors.positiveNumbersOnly && !costOfPreparing.errors.required">
       Cost of preparing must be positive
     </div>
   </div>
@@ -135,7 +151,8 @@
     <div class="alert alert-danger" role="alert" *ngIf="storageCost.errors.required">
       Storage cost is required
     </div>
-    <div class="alert alert-danger" role="alert" *ngIf="storageCost.errors.positiveNumbersOnly && !storageCost.errors.required">
+    <div class="alert alert-danger" role="alert"
+      *ngIf="storageCost.errors.positiveNumbersOnly && !storageCost.errors.required">
       Storage cost must be positive
     </div>
   </div>

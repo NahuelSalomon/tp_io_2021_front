@@ -21,7 +21,7 @@ export class ProductEditComponent implements OnInit {
     supplier: new FormControl({value:'', disabled: true}),
     model: new FormControl('', [ Validators.required]),
     scanNumber: new FormControl({value: '', disabled: true}),
-    stock: new FormControl('', [ Validators.required, CustomValidator.positiveNumbersOnly()]),
+    stock: new FormControl({value: '', disabled: true}, [ Validators.required, CustomValidator.positiveNumbersOnly()]),
     costUnit: new FormControl('', [ Validators.required, CustomValidator.positiveNumbersOnly()]),
     levelService: new FormControl('', [ Validators.required]),
     costOfPreparing : new FormControl('', [ Validators.required, CustomValidator.positiveNumbersOnly()]),

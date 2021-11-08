@@ -17,6 +17,7 @@ import { ProductAddStockComponent } from './components/product/product-add-stock
 import { ProductEditComponent } from './components/product/product-edit/product-edit.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

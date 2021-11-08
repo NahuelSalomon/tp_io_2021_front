@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CustomValidator } from 'src/app/common/custom-validator';
 import { Bill } from 'src/app/models/bill';
@@ -15,11 +15,6 @@ export class SalesRecordComponent implements OnInit {
 
   billWithlastId : number;
 
-  /*
-  @Output()
-  lastIdBill: EventEmitter<Bill> = new EventEmitter<Bill>();
-  @Output()
-  dateBill: EventEmitter<Date> = new EventEmitter<Date>();*/
 
   constructor(private productService: ProductService, private billService: BillService) { }
 
@@ -39,7 +34,6 @@ export class SalesRecordComponent implements OnInit {
   get date() { return this.dateForm.get('date'); }
 
   onClick() {
-    
       BillService.lastId = this.billWithlastId;
       BillService.currentlyDate = this.date.value;
   }

@@ -13,4 +13,11 @@
     border: 0.5px solid #D83800;
 }
 
+.status-ok{
+    color: #5FA764;
+}
+
+.status-no-ok{
+    color: #DF1C1C;
+}
 

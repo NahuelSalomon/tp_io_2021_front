@@ -14,6 +14,8 @@ import { SupplierService } from 'src/app/services/supplier.service';
 })
 export class ProductAddComponent implements OnInit {
 
+  authorization: boolean = false;
+
   constructor(private productService: ProductService,private supplierService: SupplierService) { }
 
   productForm = new FormGroup({
@@ -25,7 +27,8 @@ export class ProductAddComponent implements OnInit {
     levelService: new FormControl('', [ Validators.required]),
     costOfPreparing : new FormControl('', [ Validators.required, CustomValidator.positiveNumbersOnly()]),
     storageCost : new FormControl('', [ Validators.required, CustomValidator.positiveNumbersOnly()]),
-    description : new FormControl('', [ Validators.required])
+    description : new FormControl('', [ Validators.required]),
+    auth: new FormControl('', [])
   });
 
   get supplier() { return this.productForm.get('supplier'); }
@@ -37,9 +40,7 @@ export class ProductAddComponent implements OnInit {
   get costOfPreparing() { return this.productForm.get('costOfPreparing'); }
   get storageCost() { return this.productForm.get('storageCost'); }
   get description() { return this.productForm.get('description'); }
-
-
-
+  get auth() { return this.productForm.get('auth'); }
 
 
   supplierList : Array<Supplier>;
@@ -72,8 +73,16 @@ export class ProductAddComponent implements OnInit {
           .then(response=>console.log(response))
           .catch(error=>console.log(error))
       })
-      .catch(error=>console.error(error));
-    
+      .catch(error=>console.error(error)); 
+  }
+
+  verifyCode(){
+    if(this.auth.value == 123) {
+      this.authorization = true;
+    } else {
+      this.authorization = false;
+    }
+
   }
 
 }
