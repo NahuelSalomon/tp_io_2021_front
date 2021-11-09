@@ -32,5 +32,17 @@ export class ProductListComponent implements OnInit {
     return true;
   }
 
+  recalculateParameters(){
+    for (const product of this.productList) {
+      this.productService.recalculateParameters(product).then(response=>console.log(response)).catch(error=>console.log(error));
+    }
+    this.productService.getAll()
+    .then(response=>{
+      this.productList = response;
+      console.log(response);
+      
+    })
+    .catch(error=>console.log(error));
+  }
 
 }

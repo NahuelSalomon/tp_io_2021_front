@@ -49,11 +49,7 @@ export class ProductService {
   return this.http.put(`/api/product/scan/${scan}/stock/${movement}`, httpOptions).toPromise(); 
  }
 
- updateProduct(id : number, product : Product) : Promise<any>  {
-  console.log("metodo update");
-  
-  console.log(product);
-  
+ updateProduct(id : number, product : Product) : Promise<any>  { 
   const httpOptions = {
     headers : new HttpHeaders({
       'Content-Type' : 'application/json'
@@ -62,5 +58,18 @@ export class ProductService {
 
   return this.http.put("/api/product/"+id, product, httpOptions).toPromise(); 
  }
+
+ 
+ recalculateParameters(product : Product) : Promise<any>  {
+  
+  const httpOptions = {
+    headers : new HttpHeaders({
+      'Content-Type' : 'application/json'
+    })
+  };
+
+  return this.http.put(`/api/product/recalculation/parameters/${product.scan}`, product, httpOptions).toPromise(); 
+ }
+
 
 }
