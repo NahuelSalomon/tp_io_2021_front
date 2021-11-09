@@ -37,30 +37,38 @@ export class ProductService {
    };
 
    return this.http.post("/api/product/", product, httpOptions).toPromise(); 
- }
+  }
 
- updateStock(scan: string, movement: number) : Promise<any>  {
-  const httpOptions = {
-    headers : new HttpHeaders({
-      'Content-Type' : 'application/json'
-    })
-  };
+  updateStock(scan: string, movement: number) : Promise<any>  {
+    const httpOptions = {
+      headers : new HttpHeaders({
+        'Content-Type' : 'application/json'
+      })
+    };
 
-  return this.http.put(`/api/product/scan/${scan}/stock/${movement}`, httpOptions).toPromise(); 
- }
+    return this.http.put(`/api/product/scan/${scan}/stock/${movement}`, httpOptions).toPromise(); 
+  }
 
- updateProduct(id : number, product : Product) : Promise<any>  {
-  console.log("metodo update");
-  
-  console.log(product);
-  
-  const httpOptions = {
-    headers : new HttpHeaders({
-      'Content-Type' : 'application/json'
-    })
-  };
+  updateProduct(id : number, product : Product) : Promise<any>  {
+    console.log("metodo update");
+    
+    console.log(product);
+    
+    const httpOptions = {
+      headers : new HttpHeaders({
+        'Content-Type' : 'application/json'
+      })
+    };
 
   return this.http.put("/api/product/"+id, product, httpOptions).toPromise(); 
  }
+
+  getProductsInReviewPeriod() : Promise<any> {
+    return this.http.get("/api/product/check/pmodel").toPromise();
+  } 
+
+  getProductsReachedReorderPoint() : Promise<any> {
+    return this.http.get("/api/product/check/qmodel").toPromise();
+  }
 
 }

@@ -23,4 +23,13 @@ export class SupplierListComponent implements OnInit {
 
   }
 
+  formatDate(entry : Date) : string{
+
+    let date = new Date(entry);
+    let day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+    let month = date.getMonth() <  10 ? "0" + date.getMonth() : date.getMonth();
+
+    return day.toString() + "/" + month.toString() + "/" + date.getFullYear();
+  }
+
 }

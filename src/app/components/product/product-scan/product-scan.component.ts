@@ -22,42 +22,49 @@ export class ProductScanComponent implements OnInit{
  
   ngOnInit() {
 
+    this.prepareToRead();
+  }
+
+  prepareToRead() : void{
+
     Quagga.init({   //Inicialización de quagga, módulo para leer códigos de barra
-        inputStream: {
-          constraints: {
-            facingMode: 'environment' // restrict camera type
-          },
-          area: { // defines rectangle of the detection
-            top: '40%',    // top offset
-            right: '0%',  // right offset
-            left: '0%',   // left offset
-            bottom: '40%'  // bottom offset
-          },
+      inputStream: {
+        constraints: {
+          facingMode: 'environment' // restrict camera type
         },
-        decoder: {
-          readers: ['ean_reader'] // restrict code types
+        area: { // defines rectangle of the detection
+          top: '40%',    // top offset
+          right: '0%',  // right offset
+          left: '0%',   // left offset
+          bottom: '40%'  // bottom offset
         },
       },
-      (err: any) => {
-        if (err) {
-          this.errorMessage = `QuaggaJS could not be initialized, err: ${err}`;
-        } else {
-          Quagga.start();
-          Quagga.onDetected((res : any) => {
-            this.productService.getByScan(res.codeResult.code)
-            .then(response =>{
-              if(response == null){
-                this.notFound = true;
-              }else{
-                this.reading.emit(response);
-                document.getElementById('scanModal').click();
-              }
-            })
-            .catch(error=>{
-              console.log(error)})
+      decoder: {
+        readers: ['ean_reader'] // restrict code types
+      },
+    },
+    (err: any) => {
+      if (err) {
+        this.errorMessage = `QuaggaJS could not be initialized, err: ${err}`;
+      } else {
+        this.notFound = false;
+        Quagga.start();
+        Quagga.onDetected((res : any) => {
+          Quagga.stop();
+          this.productService.getByScan(res.codeResult.code)
+          .then(response =>{
+            if(response == null){
+              this.notFound = true;
+            }else{
+              this.reading.emit(response);
+              document.getElementById('scanModal').click();
+            }
           })
-        }
-      });
+          .catch(error=>{
+            console.log(error)})
+        });
+      }
+    });
   }
 
 

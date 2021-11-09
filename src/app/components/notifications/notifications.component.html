@@ -1,14 +1,20 @@
 <main>
-    <div class="alert alert-success" role="alert">
-        <h4 class="alert-heading">Well done!</h4>
-        <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+    <div class="alert alert-warning" role="alert" *ngIf="toOrderP.length != 0">
+        
+        <h4 class="alert-heading">
+            Products in Review Period!</h4>
+        <ul *ngFor="let product of toOrderP">
+            <li>Scan code {{product.scan}}: {{product.supplier.name}} {{product.model}}, <strong>should order {{quantityToOrderP(product)}} units.</strong></li>
+        </ul>
         <hr>
-        <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+        <p class="mb-0">After ordering, enter the new units into the system.</p>
     </div>
-    <div class="alert alert-success" role="alert">
-        <h4 class="alert-heading">Well done!</h4>
-        <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
-        <hr>
-        <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+
+    <div class="alert alert-warning" role="alert" *ngIf="toOrderQ.length != 0">
+        <h4 class="alert-heading">Products reached Reorder Point!</h4>
+        <ul *ngFor="let product of toOrderQ">
+            <li>Scan code {{product.scan}}: {{product.supplier.name}} {{product.model}}, <strong>should order {{quantityToOrderQ(product)}} units.</strong></li>
+        </ul>        <hr>
+        <p class="mb-0">After ordering, enter the new units into the system</p>
       </div>
 </main>
