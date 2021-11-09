@@ -43,7 +43,6 @@ export class SupplierAddComponent {
     this.supplierService.add(supplier)
       .then(response=>console.log(response))
       .catch(error=>console.log(error))
-
   }
 
 }

@@ -74,6 +74,10 @@ export class AddBillComponent implements OnInit {
     .catch(error=>console.log(error));
   }
 
+  showScanned(reading : Product) : void{
+    this.productForm.controls['product'].setValue(this.productList.find(p=> p.id == reading.id));
+  }
+
 }
 
 

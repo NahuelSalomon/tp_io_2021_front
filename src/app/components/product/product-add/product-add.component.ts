@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { CustomValidator } from 'src/app/common/custom-validator';
 import { Product } from 'src/app/models/product';
 import { Supplier } from 'src/app/models/supplier';
@@ -65,16 +64,20 @@ export class ProductAddComponent implements OnInit {
     let serviceLevel: number = this.levelService.value;
     let supplierId: number = this.supplier.value;
     let supplier: Supplier = new Supplier();
+    let modelType: number = 0; //Modelo Q
     this.supplierService.getById(supplierId)
       .then(response=>{
         supplier = response;
-        let product = new Product(null, scan, model, description, supplier, costUnit, costOfPreparing, storageCost, stock, 0, serviceLevel, 0, 0, 0, 0);
+        if (supplier.isPresale){
+          modelType = 1; //Modelo P
+        }
+        let product = new Product(null, scan, model, description, supplier, costUnit, costOfPreparing, storageCost, stock, modelType, serviceLevel, 0, 0, 0, 0);
         this.productService.add(product)
           .then(response=>console.log(response))
           .catch(error=>console.log(error))
       })
       .catch(error=>console.error(error)); 
-  }
+      }
 
   verifyCode(){
     if(this.auth.value == 123) {

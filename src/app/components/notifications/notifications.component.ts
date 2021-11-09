@@ -27,7 +27,19 @@ export class NotificationsComponent implements OnInit {
 
   quantityToOrderP (p : Product) : number{
 
-    return p.avgDemand* (p.supplier.reviewPeriod * p.supplier.leadTime) + 0.11 * (Math.sqrt((p.supplier.reviewPeriod * p.supplier.leadTime) * p.disDemand)) - p.stock;
+    /* let oTL = Math.sqrt((p.supplier.reviewPeriod * p.supplier.leadTime) * p.disDemand);
+    if (oTL == 0)
+      oTL = 1;
+    let ez = (p.avgDemand * p.supplier.reviewPeriod * (1-p.serviceLevel)) / oTL;
+    let z = 0;    
+    console.log(oTL);
+    console.log(ez);
+    this.productService.getZFromBrownTable(ez)
+      .then(response=> z = response)
+      .catch(error=> console.log(error));
+
+    return p.avgDemand* (p.supplier.reviewPeriod * p.supplier.leadTime) + z * oTL - p.stock; */
+    return 111;
   }
 
   quantityToOrderQ (p : Product) : number{

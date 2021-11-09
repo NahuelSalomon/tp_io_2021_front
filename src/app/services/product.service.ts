@@ -89,4 +89,8 @@ export class ProductService {
   getProductsReachedReorderPoint() : Promise<any> {
     return this.http.get("/api/product/check/qmodel").toPromise();
   }
+
+  getZFromBrownTable(ez : number) : Promise<any> {
+    return this.http.get("/api/product/getz/" + ez).toPromise();
+  }
 }

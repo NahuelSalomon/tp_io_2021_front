@@ -17,4 +17,11 @@
         </ul>        <hr>
         <p class="mb-0">After ordering, enter the new units into the system</p>
       </div>
+
+      <div class="alert alert-success" role="alert" *ngIf="!toOrderP.length && !toOrderQ.length">
+        
+        <h4 class="alert-heading">
+            Everything is in order!</h4>
+            <p>For now there are no purchase notices to show, please check back later.</p>
+    </div>
 </main>
