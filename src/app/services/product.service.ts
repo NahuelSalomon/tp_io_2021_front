@@ -37,24 +37,35 @@ export class ProductService {
    };
 
    return this.http.post("/api/product/", product, httpOptions).toPromise(); 
- }
+  }
 
- updateStock(scan: string, movement: number) : Promise<any>  {
+  updateStock(scan: string, movement: number) : Promise<any>  {
+    const httpOptions = {
+      headers : new HttpHeaders({
+        'Content-Type' : 'application/json'
+      })
+    };
+
+    return this.http.put(`/api/product/scan/${scan}/stock/${movement}`, httpOptions).toPromise(); 
+  }
+
+
+ /* updateProduct(id : number, product : Product) : Promise<any>  { 
   const httpOptions = {
     headers : new HttpHeaders({
       'Content-Type' : 'application/json'
     })
   };
+} */
 
-  return this.http.put(`/api/product/scan/${scan}/stock/${movement}`, httpOptions).toPromise(); 
- }
+  updateProduct(id : number, product : Product) : Promise<any>  {
 
- updateProduct(id : number, product : Product) : Promise<any>  { 
-  const httpOptions = {
-    headers : new HttpHeaders({
-      'Content-Type' : 'application/json'
-    })
-  };
+    const httpOptions = {
+      headers : new HttpHeaders({
+        'Content-Type' : 'application/json'
+      })
+    };
+
 
   return this.http.put("/api/product/"+id, product, httpOptions).toPromise(); 
  }
@@ -71,5 +82,11 @@ export class ProductService {
   return this.http.put(`/api/product/recalculation/parameters/${product.scan}`, product, httpOptions).toPromise(); 
  }
 
+  getProductsInReviewPeriod() : Promise<any> {
+    return this.http.get("/api/product/check/pmodel").toPromise();
+  } 
 
+  getProductsReachedReorderPoint() : Promise<any> {
+    return this.http.get("/api/product/check/qmodel").toPromise();
+  }
 }

@@ -51,7 +51,7 @@ export class ProductAddStockComponent implements OnInit {
 
   showScanned(reading : Product){
     
-    this.productForm.controls['product'].setValue(reading);
+    this.productForm.controls['product'].setValue(this.productList.find(p=> p.id == reading.id));
   }
 
 }

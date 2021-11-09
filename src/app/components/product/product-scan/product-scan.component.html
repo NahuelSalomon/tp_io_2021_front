@@ -11,7 +11,9 @@
               <!-- QuaggaJS will populate this element -->
           </div>
           <br>
-          Please, focus on the barcode and wait for its detection...
+          <div *ngIf="!notFound">
+            <p>Please, focus on the barcode and wait for its detection...</p>
+          </div>
           
           <div class="row" *ngIf="notFound">
             <div class="alert alert-danger d-flex align-items-center" role="alert">
@@ -20,7 +22,8 @@
           </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="prepareToRead()">Try Again</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="prepareToRead()">Close</button>
         </div>
       </div>
     </div>
