@@ -21,7 +21,7 @@ export class ProductAddStockComponent implements OnInit {
       .then(response => {
         this.productList = response;
       })
-      .catch(error => console.log(error))
+      .catch(error => console.log(error));
   }
 
   productForm = new FormGroup({
@@ -47,6 +47,11 @@ export class ProductAddStockComponent implements OnInit {
       })
       .catch(error=>console.log(error));
     
+  }
+
+  showScanned(reading : Product){
+    
+    this.productForm.controls['product'].setValue(reading);
   }
 
 }

@@ -1,0 +1,9 @@
+.viewport::ng-deep video {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+  }
+
+  .viewport::ng-deep canvas{
+    display: none;
+  }
